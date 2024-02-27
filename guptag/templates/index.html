@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="col-10 mx auto">
+
+    <div class="text-center">
+        <img src="https://1.bp.blogspot.com/-Sf4sPT42qCA/UM4IxB3MzFI/AAAAAAAABlg/8GIO3ApcVQY/s1600/apple+logo+png.png" class="img-fluid img-responsive" style="height:200px;"  >
+    
+    </div>
+    <form method="post">
+        {% csrf_token %}
+    <div class="mb-3">
+
+        <label for="exampleInputEmail1" class="form-label"> enter name</label>
+        <input type="name"  name="name" class="form-control" id="exampleInputEmail1" aria-describedby="email">
+
+    </div>   
+    <div class="mb-3">
+      
+      <label for="exampleInputPassword1" class="form-label">amount</label>
+      <input type="number" name="amount" class="form-control" id="exampleInputPassword1">
+    </div>
+  
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  </div>
+{% if payment %}
+
+<div class="text-center mx-auto">
+  <form action="/success" method="post">
+<script
+
+  src="https://checkout.razorpay.com/v1/checkout.js"
+  data-key= "rzp_test_ZmPmQOgVrRvcfL" 
+  data-amount="{{payment.amount}}"
+  data-currency= "INR"
+  data-order_id="{{paymant.id}}"
+  data-buttontext="pay with Razorpay "
+   data-name= "Acme apple Corp"
+  data-description= "Test Transaction"
+  data-image= "https://example.com/your_logo"
+  data-prefill.name= "Gaurav Kumar"
+  data-prefill.email= "gaurav.kumar@example.com"
+  data-prefill.contact= "9000090000" 
+  data-theme.color="#3399cc"
+ 
+    
+></script>
+<input type="hidden" custom="hidden element" name="hidden">
+</form>
+{% endif %}
+</div>
+
+{% endblock %}
